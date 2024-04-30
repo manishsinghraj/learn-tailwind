@@ -121,3 +121,89 @@ export default {
   });
 </script>
 ```
+
+
+## custom-styling various methods
+```html
+<!-- method 1 -->
+<p class="text-2xl text-[#973f29] bg-stone-200 p-[16px] mt-10">Chestnut color</p>
+
+<!-- method-2  --> 
+<!-- use tailwind config to setup color or anything -->
+<p class="text-2xl text-chestnut bg-stone-200 p-[16px] mt-10">Chestnut color</p>
+```
+
+```
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode : "class",
+  theme: {
+    extend: {
+      colors : {
+        chestnut : "#973f29"
+      }
+    },
+  },
+  plugins: [],
+}
+```
+
+
+## Handle complex classes
+
+1 break your layouts into specific components [buttons, icons, ...]
+
+
+2 use Directives
+
+<!-- css file -->
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .card {
+    @apply m-10 rounded-lg bg-white px-6 py-8 shadow-xl ring-1 ring-slate-500/5 dark:bg-black dark:ring-yellow-300
+  }
+}
+```
+
+```html
+
+<!-- for custom class defined in css -->
+
+<div class="card">
+  <h3 class="text-base font-medium tracking-tight text-slate-700 dark:text-white">This is h3 text</h3>
+  <p class="mt-2 text-sm text-slate-500 dark:text-white">This is longer p  text sdaj,hghsadg  </p>
+
+  <button 
+  id="toggleDark"
+  class="text-black-500 rounded-lg bg-blue-100 py-2 px-4 my-2"
+  onclick="document.body.classList.toggle('dark')">
+    Toggle Dark Mode
+  </button>
+</div>
+</main>
+
+<!-- // To showcase the demo of dark theme. Copy paste :) -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleDark = document.getElementById('toggleDark')
+    toggleDark.addEventListener('click', function() {
+      if(document.documentElement.classList.includes('dark')) {
+        document.documentElement.classList.remove('dark')
+      }
+      else {
+        document.documentElement.classList.add('dark')
+      }
+      alert("click!")
+    });
+  });
+</script>
+```
+
+
+3 use component libraries # refer links in starter kit
+[shadcn, tailwind ui, headless ui]
