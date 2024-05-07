@@ -16,6 +16,13 @@ const Nav = () => {
           >
           </img>
         </a>
+        <div className='hidden max-lg:block'>
+          <img src={hamburger}
+          alt='hanburger'
+          width={25}
+          height={25}>
+          </img>
+        </div>
         <ul className='flex-1 flex justify-center items-center gap-16 max-lg:hidden '>
           {navLinks.map((item) => (
             <li key={item.label}>
@@ -26,13 +33,6 @@ const Nav = () => {
             </li>
           ))}
         </ul>
-        <div className='hidden max-lg:block'>
-          <img src={hamburger}
-          alt='hanburger'
-          width={25}
-          height={25}>
-          </img>
-        </div>
       </nav>
     </header>
   )
